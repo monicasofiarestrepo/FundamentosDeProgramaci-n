@@ -1,0 +1,41 @@
+#Importar librerías para podr visualizar las imagenes 
+import matplotlib.pyplot as plt
+import matplotlib.transforms as mtransforms 
+import cv2
+import numpy as np
+import os
+from math import pi
+
+#Importar la imagen a google colab 
+from google.colab import files
+uploaded = files.upload()
+
+#Leer archivo de la imagen 
+image_file = 'FelizJuevesLadeado.jpeg'
+image_file = plt.imread(image_file)
+
+
+#mostrar la imagen con la gráfica
+fig, ax = plt.subplots()
+extent = (0,100,0,100)
+im = ax.imshow(image, cmap=plt.cm.hot, origin = "upper")
+plt.show()
+
+
+# Grafica imagen rotada
+fig, ax = plt.subplots()
+extent = (0, 100, 0, 100)
+im = ax.imshow(image, cmap=plt.cm.hot, origin='upper', extent=extent)
+
+# Aplica transformación rotación
+omega = pi / 2
+transform = mtransforms.Affine2D().rotate(omega)
+trans_data = transform + ax.transData
+im.set_transform(trans_data)
+
+# display intended extent of the image
+x1, x2, y1, y2 = im.get_extent()
+ax.plot([x1, x2, x2, x1, x1], [y1, y1, y2, y2, y1], "y--",
+        transform=trans_data)
+
+plt.show(
