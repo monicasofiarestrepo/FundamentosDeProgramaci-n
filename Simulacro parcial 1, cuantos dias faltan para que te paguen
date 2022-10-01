@@ -1,0 +1,14 @@
+from IPython.core.display import DisplayHandle
+#Cuanto falta pa la quincena
+
+Dia=int(input())
+mes=input()
+
+if (mes == "enero" or mes == "marzo" or mes== "mayo" or mes == "julio"or mes == "agosto"or mes == "octubre" or mes== "diciembre"):
+   Faltan = 31-Dia
+elif (mes == "abril" or mes == "junio" or mes == "septiembre" or mes == "noviembre"):
+  Faltan = 30-Dia
+elif (mes == "febrero"):
+  Faltan = 28-Dia
+
+print(f"Faltan {Faltan} dias para pagarte")
